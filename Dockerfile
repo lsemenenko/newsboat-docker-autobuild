@@ -19,6 +19,8 @@ RUN apt-get install --assume-yes \
         # `wget` it is.
         wget \
     && apt-get install --assume-yes --no-install-recommends asciidoctor \
+       # wasn't part of the original docker, but resolved an error during configure
+    && apt-get install --assume-yes libkrb5-dev \
     && apt-get autoremove \
     && apt-get clean
 
@@ -36,7 +38,8 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 USER builder
-COPY ./src /home/builder/src
+
+COPY --chown=builder ./src /home/builder/src
 WORKDIR /home/builder/src
 
 RUN wget -O $HOME/rustup.sh --secure-protocol=TLSv1_2 https://sh.rustup.rs \
