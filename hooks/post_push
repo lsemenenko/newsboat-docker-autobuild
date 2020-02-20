@@ -1,0 +1,23 @@
+#!/bin/bash
+
+main() {
+  # no idea if this is going to work but let's find out
+  rm README.md
+  mv README-docker.md README.md
+
+  # push latest
+  #docker push $IMAGE_NAME
+
+  # push latest, but tag using short SHA
+  docker tag $IMAGE_NAME $DOCKER_REPO:$(get_short_hash)
+  docker push $DOCKER_REPO:$(get_short_hash)
+}
+
+get_short_hash() {
+  local LONG_HASH="$(git submodule status | grep -o [a-z0-9] | tr -d "\n")"
+  local SHORT_HASH="${LONG_HASH:0:7}"
+
+  echo $SHORT_HASH
+}
+
+main "$@"
