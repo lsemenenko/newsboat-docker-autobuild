@@ -1,13 +1,6 @@
 #!/bin/bash
 
 main() {
-  # no idea if this is going to work but let's find out
-  rm README.md
-  mv README-docker.md README.md
-
-  # push latest
-  #docker push $IMAGE_NAME
-
   # push latest, but tag using short SHA
   docker tag $IMAGE_NAME $DOCKER_REPO:$(get_short_hash)
   docker push $DOCKER_REPO:$(get_short_hash)
