@@ -1,4 +1,0 @@
-#!/bin/bash
-
-rm README.md
-mv README-docker.md README.md
