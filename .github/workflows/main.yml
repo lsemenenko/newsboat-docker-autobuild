@@ -28,7 +28,7 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git status
           git add -A
-          git commit -m "newsboat commit: ${SHORT_HASH}"
+          git commit -m "Newsboat commit: ${SHORT_HASH}" || exit 0
       - name: Push changes
         shell: bash
         run: |
