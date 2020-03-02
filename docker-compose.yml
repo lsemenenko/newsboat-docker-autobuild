@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  newsboat:
+    image: lsemenenko/newsboat
+    volumes:
+      - type: bind
+        source: ~/.newsboat
+        target: /home/builder/.newsboat
+    stdin_open: true
+    tty: true
